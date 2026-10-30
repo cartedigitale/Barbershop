@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Carte de contact digitale de Ramadan Hassan - R BARBER">
+  <meta name="format-detection" content="telephone=no">
+
+  <meta property="og:title" content="Ramadan Hassan | R BARBER">
+  <meta property="og:description" content="R BARBER - Barbier à Tarbes">
+  <meta property="og:type" content="website">
+
+  <title>Ramadan Hassan | R BARBER</title>
+
+  <style>
+    :root {
+      --gold: #d4af6a;
+      --gold-light: #f3dfa8;
+      --gold-dark: #8c6a2f;
+      --red: #c8342f;
+      --blue: #2c5aa0;
+      --bg: #070707;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { background: var(--bg); }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(212,175,106,.18) 0%, transparent 45%),
+        radial-gradient(circle at 50% 100%, rgba(200,52,47,.10) 0%, transparent 40%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.012) 0 2px, transparent 2px 8px),
+        var(--bg);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding:
+        max(25px, env(safe-area-inset-top))
+        max(25px, env(safe-area-inset-right))
+        max(25px, env(safe-area-inset-bottom))
+        max(25px, env(safe-area-inset-left));
+    }
+
+    a { -webkit-tap-highlight-color: transparent; }
+
+    /* ---------- Carte ---------- */
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(212,175,106,.28);
+      border-radius: 30px;
+      padding: 0 25px 25px;
+      text-align: center;
+      box-shadow: 0 30px 100px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.08);
+      position: relative;
+      overflow: hidden;
+      animation: rise .7s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .card > * { position: relative; z-index: 1; }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      background: rgba(212,175,106,.18);
+      filter: blur(80px);
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Bande de barbier (poteau) en haut */
+    .stripe {
+      height: 9px;
+      margin: 0 -25px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--red) 0 14px,
+        #f4f1ea 14px 28px,
+        var(--blue) 28px 42px,
+        #f4f1ea 42px 56px
+      );
+      background-size: 80px 100%;
+      animation: slide 3s linear infinite;
+      box-shadow: 0 2px 12px rgba(0,0,0,.5);
+    }
+
+    .badge {
+      margin-top: 22px;
+      font-size: 9.5px;
+      letter-spacing: 4px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ---------- Photo ---------- */
+    .photo-wrapper {
+      width: 136px;
+      height: 136px;
+      margin: 18px auto 0;
+      border-radius: 50%;
+      padding: 4px;
+      background: conic-gradient(from 0deg, var(--gold-light), var(--gold-dark), var(--gold-light), var(--gold), var(--gold-light));
+      position: relative;
+      box-shadow: 0 15px 40px rgba(0,0,0,.55), 0 0 40px rgba(212,175,106,.18);
+    }
+
+    .photo-wrapper::after {
+      content: "✂";
+      position: absolute;
+      right: -2px;
+      bottom: 4px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0b0b0b;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      font-size: 17px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.6);
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 20%;
+      border-radius: 50%;
+      display: block;
+      border: 3px solid #0b0b0b;
+    }
+
+    /* ---------- Textes ---------- */
+    h1 {
+      margin-top: 22px;
+      font-size: 28px;
+      letter-spacing: -.5px;
+      font-weight: 750;
+    }
+
+    .business {
+      margin-top: 8px;
+      font-size: 13px;
+      letter-spacing: 6px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #b5b5b5;
+      font-style: italic;
+      letter-spacing: .5px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px auto 0;
+      max-width: 240px;
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,106,.6), transparent);
+    }
+
+    .services {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .service {
+      padding: 7px 12px;
+      font-size: 11px;
+      letter-spacing: .5px;
+      color: var(--gold-light);
+      background: rgba(212,175,106,.08);
+      border: 1px solid rgba(212,175,106,.25);
+      border-radius: 999px;
+    }
+
+    .location {
+      margin-top: 18px;
+      color: #a5a5a5;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    /* ---------- Boutons ---------- */
+    .contact-button {
+      width: 100%;
+      margin-top: 24px;
+      padding: 17px 20px;
+      display: block;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold) 55%, var(--gold-dark));
+      color: #120d03;
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      transition: .2s ease;
+      box-shadow: 0 12px 30px rgba(212,175,106,.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-button::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -80%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent);
+      transform: skewX(-20deg);
+      animation: shine 3.6s ease-in-out infinite;
+    }
+
+    .contact-button:hover { transform: translateY(-2px); }
+    .contact-button:active { transform: scale(.98); }
+
+    .links {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .link {
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      padding: 16px 6px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .3px;
+      transition: .2s ease;
+    }
+
+    .link.full { grid-column: 1 / -1; }
+
+    .link:hover {
+      background: rgba(212,175,106,.12);
+      border-color: rgba(212,175,106,.5);
+      transform: translateY(-2px);
+    }
+
+    .link:active { transform: scale(.98); }
+
+    .contact-button:focus-visible,
+    .link:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 27px;
+      font-size: 23px;
+      margin-bottom: 7px;
+    }
+
+    .number {
+      margin-top: 20px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: #a5a5a5;
+    }
+
+    footer {
+      margin-top: 22px;
+      color: #5e5e5e;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+    }
+
+    footer span { color: var(--gold); }
+
+    /* ---------- Animations ---------- */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px) scale(.98); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    @keyframes slide {
+      from { background-position: 0 0; }
+      to   { background-position: 80px 0; }
+    }
+
+    @keyframes shine {
+      0%, 55% { left: -80%; }
+      100%    { left: 140%; }
+    }
+
+    @media (max-width: 400px) {
+      body {
+        padding:
+          max(15px, env(safe-area-inset-top))
+          max(15px, env(safe-area-inset-right))
+          max(15px, env(safe-area-inset-bottom))
+          max(15px, env(safe-area-inset-left));
+      }
+
+      .card { padding: 0 18px 22px; }
+      .stripe { margin: 0 -18px; }
+      h1 { font-size: 25px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card, .stripe, .contact-button::after { animation: none; }
+      .contact-button, .link { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+
+    <div class="stripe" aria-hidden="true"></div>
+
+    <div class="badge">Barber Shop • Tarbes</div>
+
+    <div class="photo-wrapper">
+      <img class="photo" src="photo-rbarber.jpg" alt="Ramadan Hassan">
+    </div>
+
+    <h1>Ramadan Hassan</h1>
+
+    <div class="business">R BARBER</div>
+
+    <div class="tagline">Coupes • Dégradés • Barbe</div>
+
+    <div class="divider" aria-hidden="true">✂</div>
+
+    <div class="services">
+      <span class="service">Coupe homme</span>
+      <span class="service">Dégradé</span>
+      <span class="service">Taille de barbe</span>
+      <span class="service">Rasage</span>
+    </div>
+
+    <div class="location">
+      📍 3 Bis Rue Georges Lassalle<br>
+      65000 Tarbes
+    </div>
+
+    <a class="contact-button" href="contact.vcf" download="Ramadan-Hassan-R-BARBER.vcf">
+      ＋ Ajouter aux contacts
+    </a>
+
+    <div class="links">
+
+      <a class="link"
+         href="tel:+33751199433"
+         aria-label="Appeler Ramadan Hassan">
+        <span class="icon" aria-hidden="true">📞</span>
+        Appeler
+      </a>
+
+      <a class="link"
+         href="https://wa.me/33751199433"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Contacter Ramadan Hassan sur WhatsApp">
+        <span class="icon" aria-hidden="true">💬</span>
+        WhatsApp
+      </a>
+
+      <a class="link full"
+         href="https://www.google.com/maps/search/?api=1&query=3%20Bis%20Rue%20Georges%20Lassalle%2C%2065000%20Tarbes"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Ouvrir l'adresse de R BARBER dans Google Maps">
+        <span class="icon" aria-hidden="true">📍</span>
+        Itinéraire
+      </a>
+
+    </div>
+
+    <div class="number">
+      +33 7 51 19 94 33
+    </div>
+
+    <footer>
+      R BARBER <span>✂</span> DIGITAL BUSINESS CARD
+    </footer>
+
+    <div class="stripe" aria-hidden="true" style="margin-top:22px;margin-bottom:-25px;"></div>
+
+  </main>
+</body>
+</html>
